@@ -78,5 +78,10 @@ Decentralised-Identity-Verification/
 ├── contractAbi.json         # ABI JSON pasted from Remix
 ├── index.html               # Frontend code
 ├── IdentityVerification.sol # Solidity Smart Contract
+├── frontend/                # Frontend assets
+│   ├── style.css            # CSS for styling the frontend
+│   └── main.js              # JavaScript for frontend logic
 └── README.md                # You’re reading this!
+
 ```
+
