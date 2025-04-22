@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Identity Verification</title>
+  <script src="https://cdn.jsdelivr.net/npm/web3/dist/web3.min.js"></script>
+</head>
+<body>
+  <h1>Identity Verification DApp</h1>
+
+  <!-- Register Identity -->
+  <h2>Register Identity</h2>
+  <input type="text" id="fullName" placeholder="Full Name" />
+  <input type="number" id="idNumber" placeholder="ID Number" />
+  <button onclick="registerIdentity()">Register</button>
+
+  <!-- Verify Identity (admin only) -->
+  <h2>Verify Identity</h2>
+  <input type="text" id="verifyAddress" placeholder="User Address" />
+  <button onclick="verifyIdentity()">Verify</button>
+
+  <!-- Get Identity -->
+  <h2>Get Identity</h2>
+  <input type="text" id="getIdentityAddress" placeholder="User Address" />
+  <button onclick="getIdentity()">Get Identity</button>
+  <div id="identityDetails"></div>
+
+  <script>
+	let web3;
+	let contract;
+	let userAddress;
+	const contractAddress = "0x81fb8ec1de0cc3de4b65360280ce8d93b56c03aa"; // Your deployed contract
+  
+	window.addEventListener('load', async () => {
+	  if (window.ethereum) {
+		web3 = new Web3(window.ethereum);
+		const accounts = await ethereum.request({ method: 'eth_requestAccounts' });
+		userAddress = accounts[0]; // 🔥 Set user address here
+  
+		const response = await fetch("contractAbi.json"); // Make sure this file is in the same folder
+		const abi = await response.json();
+  
+		contract = new web3.eth.Contract(abi, contractAddress);
+		console.log("Contract loaded", contract);
+	  } else {
+		alert("Install MetaMask!");
+	  }
+	});
+  
+	async function registerIdentity() {
+	  const fullName = document.getElementById("fullName").value;
+	  const idNumber = document.getElementById("idNumber").value;
+  
+	  if (!fullName || !idNumber) {
+		alert("Please fill in both fields.");
+		return;
+	  }
+  
+	  try {
+		await contract.methods.registerIdentity(fullName, idNumber).send({ from: userAddress });
+		alert("Identity Registered!");
+	  } catch (error) {
+		console.error(error);
+		alert("Error registering identity.");
+	  }
+	}
+  
+	async function verifyIdentity() {
+	  const verifyAddress = document.getElementById("verifyAddress").value;
+  
+	  if (!verifyAddress) {
+		alert("Please enter a user address.");
+		return;
+	  }
+  
+	  try {
+		await contract.methods.verifyIdentity(verifyAddress).send({ from: userAddress });
+		alert("Identity Verified!");
+	  } catch (error) {
+		console.error(error);
+		alert("Error verifying identity.");
+	  }
+	}
+  
+	async function getIdentity() {
+	  const address = document.getElementById("getIdentityAddress").value;
+  
+	  if (!address) {
+		alert("Please enter a user address.");
+		return;
+	  }
+  
+	  try {
+		const identity = await contract.methods.getIdentity(address).call();
+		const identityDetails = `
+		  <p><strong>Full Name:</strong> ${identity[0]}</p>
+		  <p><strong>ID Number:</strong> ${identity[1]}</p>
+		  <p><strong>Verified:</strong> ${identity[2]}</p>
+		`;
+		document.getElementById("identityDetails").innerHTML = identityDetails;
+	  } catch (error) {
+		console.error(error);
+		alert("Error retrieving identity.");
+	  }
+	}
+  </script>
+  
+</body>
+</html>
