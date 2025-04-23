@@ -65,7 +65,7 @@ cd <project-folder>
 
 ## 🛂 Verify Identity (Admin only)
 - Enter user's wallet address
-- Click "Verify"
+- Click "Verify" [ Only Admin can verify whose abi and contract address is there in main.js ]
 
 ## 🔍 Get Identity
 - Enter wallet address
