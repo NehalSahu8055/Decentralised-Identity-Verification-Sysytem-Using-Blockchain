@@ -18,6 +18,7 @@ contract IdentityVerification {
         require(msg.sender == admin, "Only admin can call this function");
         _;
     }
+    //_; placeholder for the function using this
 
     address public admin;
 
@@ -35,6 +36,7 @@ contract IdentityVerification {
             isVerified: false
         });
     }
+    // memory	The data location: means the string is stored temporarily in memory
 
     function verifyIdentity(address _user) external onlyAdmin {
         Identity storage identity = identities[_user];
@@ -45,6 +47,8 @@ contract IdentityVerification {
         identity.isVerified = true;
         emit IdentityVerified(_user);
     }
+    // Only the admin can call verifyIdentity.
+    // If anyone else calls it, the transaction fails.
 
     function getIdentity(address _user) external view returns (string memory, uint256, bool) {
         Identity memory identity = identities[_user];

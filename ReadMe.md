@@ -2,6 +2,7 @@
 
 A simple DApp to register, verify, and retrieve user identity securely using Ethereum blockchain.
 
+**Livesite Link**: https://identity-dapp-nehal.netlify.app/
 ---
 
 ## ✅ Features
