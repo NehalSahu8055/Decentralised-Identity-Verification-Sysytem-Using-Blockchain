@@ -5,7 +5,7 @@ A simple DApp to register, verify, and retrieve user identity securely using Eth
 **Livesite Link**: https://identity-dapp-nehal.netlify.app/
 ---
 
-## ✅ Features
+## Features
 
 - Register Identity with Full Name and ID Number
 - Admin can verify users' identity
@@ -14,7 +14,7 @@ A simple DApp to register, verify, and retrieve user identity securely using Eth
 
 ---
 
-## 📦 Prerequisites
+## Prerequisites
 
 - MetaMask Wallet Extension
 - Node.js (for any future expansions, optional here)
@@ -23,7 +23,7 @@ A simple DApp to register, verify, and retrieve user identity securely using Eth
 
 ---
 
-## 🚀 Steps to Run the Project
+## Steps to Run the Project
 
 ### 1. Clone the Repository
 ```bash
@@ -58,21 +58,21 @@ cd <project-folder>
 - You will get running server like this http://127.0.0.1:5500/
 - Ensure MetaMask is connected to the correct network (same as the deployed contract)
 
-## 🛠 Usage Guide
-## 🔐 Register Identity
+## Usage Guide
+## Register Identity
 - Enter Full Name and ID Number
 - Click on "Register"
 
-## 🛂 Verify Identity (Admin only)
+## Verify Identity (Admin only)
 - Enter user's wallet address
 - Click "Verify" [ Only Admin can verify whose abi and contract address is there in main.js ]
 
-## 🔍 Get Identity
+## Get Identity
 - Enter wallet address
 - Click "Get Identity"
 - Displays name, ID number, and verification status
 
-## 📁 Project Structure
+## Project Structure
 ```js
 Decentralised-Identity-Verification/
 │
