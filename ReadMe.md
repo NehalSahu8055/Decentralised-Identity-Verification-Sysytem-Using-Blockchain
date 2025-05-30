@@ -54,8 +54,8 @@ cd <project-folder>
   ```
 
 ## 5. Run the Frontend
-- Simply open index.html in your browser
-
+- Simply open the directory in VS Code and run live server
+- You will get running server like this http://127.0.0.1:5500/
 - Ensure MetaMask is connected to the correct network (same as the deployed contract)
 
 ## 🛠 Usage Guide
